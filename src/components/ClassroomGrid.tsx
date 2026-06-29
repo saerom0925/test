@@ -1,14 +1,15 @@
 import { Seat } from '../types';
 import SeatCard from './SeatCard';
-import { Presentation, ShieldAlert } from 'lucide-react';
+import { Presentation } from 'lucide-react';
 
 interface ClassroomGridProps {
   seats: Seat[];
-  onToggleX: (id: number) => void;
+  onClickSeat: (id: number) => void;
   assigned: boolean;
+  isFixMode: boolean;
 }
 
-export default function ClassroomGrid({ seats, onToggleX, assigned }: ClassroomGridProps) {
+export default function ClassroomGrid({ seats, onClickSeat, assigned, isFixMode }: ClassroomGridProps) {
   return (
     <div className="bg-[#f8fafc] rounded-3xl border-2 border-slate-200 p-8 shadow-xs relative">
       {/* Front of the Classroom / Teacher Desk */}
@@ -28,8 +29,9 @@ export default function ClassroomGrid({ seats, onToggleX, assigned }: ClassroomG
           <SeatCard
             key={seat.id}
             seat={seat}
-            onToggleX={onToggleX}
+            onClick={onClickSeat}
             assigned={assigned}
+            isFixMode={isFixMode}
           />
         ))}
       </div>
@@ -45,3 +47,4 @@ export default function ClassroomGrid({ seats, onToggleX, assigned }: ClassroomG
     </div>
   );
 }
+
